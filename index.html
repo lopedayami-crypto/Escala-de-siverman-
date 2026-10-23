@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escala de Silverman</title>
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-dark: #1e3a8a;
+      --accent: #dbeafe;
+      --soft: #f8fafc;
+      --text: #0f172a;
+      --muted: #475569;
+      --success: #ecfdf5;
+      --success-border: #86efac;
+      --warning: #fff7ed;
+      --warning-border: #fdba74;
+      --danger: #fef2f2;
+      --danger-border: #fca5a5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 32px 24px;
+      border-radius: 18px;
+      box-shadow: 0 12px 25px rgba(29, 78, 216, 0.25);
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 3rem);
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 1.05rem;
+      opacity: 0.95;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e2e8f0;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+      color: var(--primary-dark);
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .signos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .signo {
+      background: var(--soft);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid #dbeafe;
+    }
+
+    .signo h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .interpretacion {
+      background: var(--success);
+      border: 1px solid var(--success-border);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .interpretacion h2 {
+      margin-top: 0;
+      color: #166534;
+    }
+
+    .range-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .range-box div {
+      background: white;
+      border-radius: 10px;
+      border: 1px solid #dbeafe;
+      padding: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      background: white;
+    }
+
+    .calcular-btn {
+      margin-top: 18px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .calcular-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .resultado {
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+    }
+
+    .resultado strong {
+      color: var(--primary-dark);
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 18px 14px 40px; }
+      header { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Escala de Silverman</h1>
+      <div class="subtitle">Herramienta para evaluar la dificultad respiratoria en recién nacidos.</div>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>¿Qué es?</h2>
+        <p>
+          La escala de Silverman es una herramienta clínica utilizada para valorar la severidad de la
+          dificultad respiratoria en recién nacidos, especialmente cuando existe sospecha de enfermedad
+          respiratoria o esfuerzo respiratorio excesivo.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>¿Para qué sirve?</h2>
+        <p>
+          Ayuda a medir la gravedad del esfuerzo respiratorio, monitorear la evolución del paciente y
+          decidir si necesita mayor apoyo terapéutico o ventilatorio.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h2>Los 5 signos que evalúa</h2>
+        <div class="signos">
+          <div class="signo">
+            <h3>1. Tiraje intercostal</h3>
+            <p>Retracción de la pared torácica entre las costillas durante la inspiración.</p>
+          </div>
+          <div class="signo">
+            <h3>2. Retracción supraesternal</h3>
+            <p>Hundimiento por encima del esternón durante la inspiración.</p>
+          </div>
+          <div class="signo">
+            <h3>3. Retracción xifoidea</h3>
+            <p>Hundimiento del área del proceso xifoides durante la inspiración.</p>
+          </div>
+          <div class="signo">
+            <h3>4. Aleteo nasal</h3>
+            <p>Movimiento de las alas de la nariz durante la respiración.</p>
+          </div>
+          <div class="signo">
+            <h3>5. Quejido espiratorio</h3>
+            <p>Sonido audible de esfuerzo respiratorio durante la espiración.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="interpretacion">
+      <h2>Interpretación del puntaje</h2>
+      <div class="range-box">
+        <div><strong>0 a 3:</strong> sin dificultad respiratoria o dificultad leve.</div>
+        <div><strong>4 a 6:</strong> dificultad respiratoria moderada.</div>
+        <div><strong>7 a 10:</strong> dificultad respiratoria severa.</div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top: 28px;">
+      <h2>Calculadora rápida</h2>
+      <div>
+        <label for="tiraje">Tiraje intercostal</label>
+        <select id="tiraje">
+          <option value="0">0 - Ausente</option>
+          <option value="1">1 - Leve</option>
+          <option value="2">2 - Marcado</option>
+        </select>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <label for="supraesternal">Retracción supraesternal</label>
+        <select id="supraesternal">
+          <option value="0">0 - Ausente</option>
+          <option value="1">1 - Leve</option>
+          <option value="2">2 - Marcado</option>
+        </select>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <label for="xifoidea">Retracción xifoidea</label>
+        <select id="xifoidea">
+          <option value="0">0 - Ausente</option>
+          <option value="1">1 - Leve</option>
+          <option value="2">2 - Marcado</option>
+        </select>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <label for="aleteo">Aleteo nasal</label>
+        <select id="aleteo">
+          <option value="0">0 - Ausente</option>
+          <option value="1">1 - Leve</option>
+          <option value="2">2 - Marcado</option>
+        </select>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <label for="quejido">Quejido espiratorio</label>
+        <select id="quejido">
+          <option value="0">0 - Ausente</option>
+          <option value="1">1 - Leve</option>
+          <option value="2">2 - Marcado</option>
+        </select>
+      </div>
+
+      <button class="calcular-btn" onclick="calcularResultado()">Calcular puntaje</button>
+      <div class="resultado" id="resultado">
+        <strong>Puntaje total:</strong> 0
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function calcularResultado() {
+      const valores = [
+        Number(document.getElementById('tiraje').value),
+        Number(document.getElementById('supraesternal').value),
+        Number(document.getElementById('xifoidea').value),
+        Number(document.getElementById('aleteo').value),
+        Number(document.getElementById('quejido').value)
+      ];
+
+      const total = valores.reduce((sum, valor) => sum + valor, 0);
+      let mensaje = '';
+
+      if (total >= 0 && total <= 3) {
+        mensaje = 'Sin dificultad respiratoria o dificultad leve.';
+      } else if (total >= 4 && total <= 6) {
+        mensaje = 'Dificultad respiratoria moderada.';
+      } else if (total >= 7 && total <= 10) {
+        mensaje = 'Dificultad respiratoria severa.';
+      } else {
+        mensaje = 'Puntaje fuera del rango esperado.';
+      }
+
+      document.getElementById('resultado').innerHTML =
+        '<strong>Puntaje total:</strong> ' + total + ' — ' + mensaje;
+    }
+  </script>
+</body>
+</html>
